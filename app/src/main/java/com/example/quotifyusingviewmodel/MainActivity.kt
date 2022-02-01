@@ -80,9 +80,11 @@ lateinit var mainViewModel: MainViewModelss
     }
     */
 
-        mainViewModel.quoteLiveData.observe(this, Observer {
-            binding.txtCounter.text = it
-        })
+    /*
+    TODO 10 BECAUSE OF THIS WE REMOVE THIS SO IT DON'T KNOW LIFECYCE
+    mainViewModel.quoteLiveData.observe(this, Observer {
+                    binding.txtCounter.text = it
+            })*/
 
     //AB HAMA BINDING VAL KO SET KARNA HAI JO LAYOUT DEFNE KIYA TGHA
 /*        <data>
@@ -91,8 +93,9 @@ lateinit var mainViewModel: MainViewModelss
         type="com.example.quotifyusingviewmodel.databindingLiveData.MainViewModelss"
         />
         </data>*/
-  binding.mainViewModel = mainViewModel
-
+    binding.mainViewModel = mainViewModel
+    //TODO CHECK 10
+    binding.lifecycleOwner = this
 
     }
 }

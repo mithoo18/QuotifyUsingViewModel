@@ -27,6 +27,7 @@
             android:layout_marginTop="260dp"
             android:textAlignment="center"
             android:textColor="#FFF"
+            android:text="@{mainViewModel.quoteLiveData}"
             android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
