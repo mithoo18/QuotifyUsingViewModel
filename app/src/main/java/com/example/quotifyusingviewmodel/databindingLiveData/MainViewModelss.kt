@@ -27,4 +27,9 @@ class MainViewModelss : ViewModel(){
 jb bhi button click hoga ya call hoga
             android:onClick="@{() -> mainViewModel.updateQuote()}"
 mainViewModel.updateQuote
-    */
+
+TODO TWO WAY DATA BINDING BECASUE WE ARE PASSING DATA FROM VIEW --> lIVE_DATA
+android:text="@={mainViewModel.quoteLiveData}"
+
+
+*/
