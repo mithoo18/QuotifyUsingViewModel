@@ -4,24 +4,31 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.quotifyusingviewmodel.databinding.ActivityMainBinding
+import com.example.quotifyusingviewmodel.databindingLiveData.MainViewModelss
 import com.example.quotifyusingviewmodel.livedata.MainViewModels
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
-lateinit var mainViewModel : MainViewModels
+lateinit var binding : ActivityMainBinding
+lateinit var mainViewModel: MainViewModelss
 
-private val factsTextView : TextView
-//This is a getter
-get() = findViewById(R.id.txtCounter)
+    //TODO 2 BRANCH
+    /*lateinit var mainViewModel : MainViewModels
 
-private val btnUpdate : FloatingActionButton
+    private val factsTextView : TextView
     //This is a getter
-    get() = findViewById(R.id.floatingActionButton)
+    get() = findViewById(R.id.txtCounter)
+
+    private val btnUpdate : FloatingActionButton
+        //This is a getter
+        get() = findViewById(R.id.floatingActionButton)*/
 
 
-//TODO 1 BRANCH
+    //TODO 1 BRANCH
     /*
     lateinit var txtCounter : TextView //counterText
     lateinit var floatingActionButton : FloatingActionButton //counterText
@@ -30,7 +37,13 @@ private val btnUpdate : FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //TODO 1 BRANCH & 2 BRANCH
+        //setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        /* Intialize */
+        mainViewModel = ViewModelProvider(this).get(MainViewModelss::class.java)
+
+
 
         //TODO 1 BRANCH
         /*txtCounter = findViewById(R.id.txtCounter)
@@ -50,6 +63,9 @@ private val btnUpdate : FloatingActionButton
         txtCounter.text = mainViewModel.count.toString()
     }*/
 
+    //TODO 2 BRANCH
+
+    /*
     mainViewModel = ViewModelProvider(this).get(MainViewModels::class.java)
 
     //Take live datafrm viewModel
@@ -62,6 +78,21 @@ private val btnUpdate : FloatingActionButton
     btnUpdate.setOnClickListener {
         mainViewModel.updateLiveData()
     }
+    */
+
+        mainViewModel.quoteLiveData.observe(this, Observer {
+            binding.txtCounter.text = it
+        })
+
+    //AB HAMA BINDING VAL KO SET KARNA HAI JO LAYOUT DEFNE KIYA TGHA
+/*        <data>
+        <variable
+        name="mainViewModel"
+        type="com.example.quotifyusingviewmodel.databindingLiveData.MainViewModelss"
+        />
+        </data>*/
+  binding.mainViewModel = mainViewModel
+
 
     }
 }
